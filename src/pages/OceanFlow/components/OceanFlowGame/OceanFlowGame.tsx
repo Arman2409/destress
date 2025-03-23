@@ -129,7 +129,7 @@ const Game = () => {
       }
       if (scene.current.sys.game) {
         const { clientX, clientY } = event;
-        let angle = getAngle(oldX, oldY, clientX, clientY);
+        let angle = getAngle({x: oldX, y: oldY}, {x: clientX, y: clientY});
         const { height, width } = scene.current?.sys?.game?.canvas;
         updateJellyfish(
           "mouse",

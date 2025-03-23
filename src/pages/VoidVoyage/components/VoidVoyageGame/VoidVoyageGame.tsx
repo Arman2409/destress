@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import {
   Scene,
   WebGLRenderer,
@@ -14,11 +14,7 @@ import {
   Texture
 } from 'three';
 
-import styles from "../../../../styles/pages/VoidVoyage/VoidVoyage.module.scss";
-import Loading from "../../../../globals/components/Loading/Loading";
-
 const VoidVoyageGame = () => {
-  const [loading, setLoading] = useState<boolean>(false);
   const threeContainer = useRef<any>();
   const gameInitialized = useRef<boolean>(false);
 
@@ -98,7 +94,7 @@ const VoidVoyageGame = () => {
 
   return (
     <>
-      {loading && <Loading />}
+      {/* {loading && <Loading />} */}
       <div ref={threeContainer} />
     </>
   )
