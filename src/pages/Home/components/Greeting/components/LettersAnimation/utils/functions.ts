@@ -10,8 +10,8 @@ export const getSpacingAndWidth = (windowWidth: number): SubtitleDetails => {
     breakpoints.forEach((breakpoint: string) => {
         if (details) return false;
         if (windowWidth > Number(breakpoint)) {
-            const spacingBreakpoints: any = lettersSpacingsAndWidths;
-            details = spacingBreakpoints[breakpoint];
+            const spacingBreakpoints: typeof lettersSpacingsAndWidths = lettersSpacingsAndWidths;
+            details = spacingBreakpoints[Number(breakpoint) as keyof typeof spacingBreakpoints];
         }
     })
 

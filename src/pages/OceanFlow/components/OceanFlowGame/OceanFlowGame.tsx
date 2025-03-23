@@ -1,14 +1,14 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Phaser from "phaser";
-import { angle as getAngle} from "pointscape";
+import { angle as getAngle } from "pointscape";
 
-import type { FishSchool } from "../../../../types/oceanFlow";
 import configs from "../../../../configs/games/oceanFlow";
-import { eventKeys } from "./utils/data";
-import { addPlants, checkForCollision, createRandomFishSchool, updateJellyfishDetails } from "./utils/functions";
 import ScoreAlert from "../../../../global/components/ScoreAlert/ScoreAlert";
 import Loading from "../../../../global/components/Loading/Loading";
 import { getConfig } from "./utils/config";
+import { addPlants, checkForCollision, createRandomFishSchool, updateJellyfishDetails } from "./utils/functions";
+import { eventKeys } from "./utils/data";
+import type { FishSchool, OceanScene } from "../../../../types/oceanFlow";
 
 const {
   createFishSchoolInterval,
@@ -21,7 +21,7 @@ const {
 const Game = () => {
   const [escapedCount, setEscapedCount] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(true);
-  const scene = useRef<any>(null);
+  const scene = useRef<OceanScene>(null);
   const mouseMoving = useRef<boolean>(false);
 
   const updateJellyfish = useCallback((
@@ -36,7 +36,7 @@ const Game = () => {
   ) => {
     const isLarge = window.innerWidth > 900;
     updateJellyfishDetails(
-      scene.current,
+      scene.current as OceanScene,
       type,
       isLarge,
       rotation,
@@ -51,7 +51,9 @@ const Game = () => {
   useEffect(() => {
     const phaserContainer = document.querySelector("#phaser-container");
     if (phaserContainer?.innerHTML) return;
-    window.addEventListener("resize", () => setLoading(true))
+
+    window.addEventListener("resize", () => setLoading(true));
+
     const isLarge = window.innerWidth > 900;
     class Ocean extends Phaser.Scene {
       fishSchools: FishSchool[] = [];
@@ -99,8 +101,8 @@ const Game = () => {
         })
       }
     }
-    const gameScene = new Ocean()
-    scene.current = gameScene;
+    const gameScene = new Ocean();
+    (scene as { current: OceanScene }).current = gameScene;
     new Phaser.Game(getConfig(gameScene));
     setLoading(false);
     window.addEventListener("keydown", (e: KeyboardEvent) => {
@@ -109,14 +111,14 @@ const Game = () => {
         updateJellyfish("keypress", 0, "y", undefined, undefined, -jellyfishStep, undefined, undefined);
       }
       if (eventKeys.bottom.includes(e.key)) {
-        const { height } = scene.current?.sys?.game?.canvas;
+        const { height } = scene.current?.sys?.game?.canvas as HTMLCanvasElement;
         updateJellyfish("keypress", 3, "y", undefined, undefined, jellyfishStep, height, undefined);
       }
       if (eventKeys.left.includes(e.key)) {
         updateJellyfish("keypress", 4.5, "x", undefined, undefined, -jellyfishStep, undefined, undefined);
       }
       if (eventKeys.right.includes(e.key)) {
-        const { width } = scene.current?.sys?.game?.canvas;
+        const { width } = scene.current?.sys?.game?.canvas as HTMLCanvasElement;
         updateJellyfish("keypress", 1.5, "x", undefined, undefined, jellyfishStep, undefined, width);
       }
     })
@@ -127,9 +129,9 @@ const Game = () => {
         mouseMoving.current = true;
         setTimeout(() => mouseMoving.current = false, 1000)
       }
-      if (scene.current.sys.game) {
+      if (scene.current?.sys.game) {
         const { clientX, clientY } = event;
-        let angle = getAngle({x: oldX, y: oldY}, {x: clientX, y: clientY});
+        let angle = getAngle({ x: oldX, y: oldY }, { x: clientX, y: clientY });
         const { height, width } = scene.current?.sys?.game?.canvas;
         updateJellyfish(
           "mouse",

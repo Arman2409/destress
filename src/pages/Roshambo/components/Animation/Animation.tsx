@@ -1,11 +1,11 @@
 import { useContext, useEffect, useMemo, useState } from "react";
 
 import styles from "../../../../styles/pages/Roshambo/components/Animation/Animation.module.scss";
-import type { Jest, WindowSize } from "../../../../types/roshambo";
+import configs from "../../../../configs/games/roshambo";
 import ShakingHand from "./components/ShakingHand/ShakingHand";
 import { RoshamboContext } from "../../Roshambo";
 import { getRandomBackground, getRandomJest, getBackgroundsArr } from "./utils/functions";
-import configs from "../../../../configs/games/roshambo";
+import type { Jest, WindowSize } from "../../../../types/roshambo";
 
 const {
   animationDuration,
@@ -17,7 +17,7 @@ const {
 const imageBackgrounds = getBackgroundsArr(backgrounds, backgroundsPath);
 
 const Animation = () => {
-  const [imageLoaded, setImageLoaded] = useState<any>();
+  const [imageLoaded, setImageLoaded] = useState<boolean>();
   const [windowSize, setWindowSize] = useState<WindowSize>(window.innerWidth > 680 ? "large" : window.innerWidth > 480 ? "medium" : "small");
   const { chosenJest, dispatchOpponentJest, opponentJest } = useContext(RoshamboContext);
   const opponentJestMemo = useMemo<Jest>(() => opponentJest || getRandomJest(), [opponentJest]);

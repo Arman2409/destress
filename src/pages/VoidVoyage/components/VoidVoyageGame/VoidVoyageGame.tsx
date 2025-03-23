@@ -15,7 +15,7 @@ import {
 } from 'three';
 
 const VoidVoyageGame = () => {
-  const threeContainer = useRef<any>();
+  const threeContainer = useRef<HTMLDivElement>(null);
   const gameInitialized = useRef<boolean>(false);
 
   useEffect(() => {
@@ -39,7 +39,7 @@ const VoidVoyageGame = () => {
     blackHole.scale.set(0.25, 0.25, 0.25);
 
     scene.add(blackHole);
-    threeContainer.current.appendChild(renderer.domElement);
+    threeContainer.current?.appendChild(renderer.domElement);
     const starGeometry = new SphereGeometry(0.01, 10, 10);
     const starMaterial = new MeshBasicMaterial({ color: 0xFFFFFF }); // White color
 
@@ -70,7 +70,7 @@ const VoidVoyageGame = () => {
 
     animate();
 
-    function onMouseMove(event: any) {
+    function onMouseMove(event: MouseEvent) {
       const mouseX = (event.clientX / window.innerWidth) * 2 - 1;
       const mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
       const raycaster = new Raycaster();

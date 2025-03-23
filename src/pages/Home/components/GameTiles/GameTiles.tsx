@@ -21,7 +21,7 @@ const GameTiles = ({ choseGame }: GameTilesProps) => {
         }
     )
 
-    const gameGroups = getChunks(games, 2);
+    const gameGroups = getChunks(games, 2) as Game[][];
 
     useEffect(() => {
         setTimeout(() => {

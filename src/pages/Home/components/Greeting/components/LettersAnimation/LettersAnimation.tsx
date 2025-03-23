@@ -14,7 +14,7 @@ const LettersAnimation = () => {
 
     const [letterDetails, setLetterDetails] = useState<SubtitleDetails>({ spacing, width })
     const lettersInitialized = useRef<boolean>(false);
-    const lettersMain = useRef<any>(null);
+    const lettersMain = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         if (lettersInitialized.current) return;
@@ -27,7 +27,7 @@ const LettersAnimation = () => {
             letterP.setAttribute("class", styles.letters_title_letter)
             letterP.style.top = Math.round(windowWidth * Math.random()) + "px"
             letterP.style.left = Math.round(windowWidth * Math.random()) + "px"
-            lettersMain.current.appendChild(letterP);
+            lettersMain.current?.appendChild(letterP);
             animate(letterP,
                 {
                     top: 0 + "px",
@@ -44,7 +44,9 @@ const LettersAnimation = () => {
                 // eslint-disable-next-line 
                 if (spacing !== letterSpacing || width !== width) {
                     lettersInitialized.current = false;
-                    lettersMain.current.innerHTML = "";
+                    if( lettersMain.current) {
+                        lettersMain.current.innerHTML = "";
+                    }
                     return {
                         spacing: letterSpacing,
                         width: titleWidth

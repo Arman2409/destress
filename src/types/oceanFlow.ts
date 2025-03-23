@@ -7,13 +7,13 @@ export type ScoreProps = {
 }
 
 // interfaces 
-export interface FishSchool  {
+export interface FishSchool {
     id: string
-    fishes: Array<any>
-    startingPoint: any
+    fishes: Array<Phaser.GameObjects.Sprite>
+    startingPoint: Point
     fishCount: number
     direction: Point
-    interval: any
+    interval: string | number | undefined | unknown
     currentPosition: Point
     escapingFrom: null|Point
     escapeDirections: Array<Point>

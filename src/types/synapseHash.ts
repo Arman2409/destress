@@ -1,7 +1,8 @@
 
+import { Tweens } from "phaser"
 import type { Point } from "./shared"
 
-export type Connection =  Array<[string, string]>
+export type Connection = Array<[string, string]>
 
 // props
 
@@ -16,13 +17,15 @@ export type CompletedAlertProps = {
 export interface Neuron {
     id: string
     placement: Point
-    tween?: any
     sprite: Phaser.GameObjects.Sprite
+    tween?: Tweens.Tween
 }
 
 export interface NetworkScene extends Phaser.Scene {
-    clickedNeuron: any
+    clickedNeuron: Neuron & {
+        tween?: Tweens.Tween,
+    } | string | null,
     neurons: Neuron[],
     connectionSprites: Phaser.GameObjects.Sprite[];
-    neuronConnections: Connection[]
+    neuronConnections: Connection
 }

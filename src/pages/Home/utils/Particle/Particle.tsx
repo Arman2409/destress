@@ -8,14 +8,14 @@ export class Particle {
     protected y = 0;
     protected dx = 0;
     protected dy = 0;
-    private readonly context: any;
+    private readonly context: CanvasRenderingContext2D;
 
     constructor(
         size: number,
         color: string,
         canvasWidth: number,
         canvasHeight: number,
-        context: any) {
+        context: CanvasRenderingContext2D) {
         this.size = size;
         this.color = color;
         this.canvasWidth = canvasWidth;
