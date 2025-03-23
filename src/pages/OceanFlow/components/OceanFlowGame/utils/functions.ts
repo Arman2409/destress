@@ -153,7 +153,7 @@ const removeFishSchool = (school: FishSchool, scene: OceanScene) => {
     school.fishes.forEach((fish) => {
         fish.destroy();
     })
-    clearInterval(school.interval);
+    clearInterval(school.interval as number);
     scene.fishSchools = scene.fishSchools.filter(({ id }: FishSchool) => {
         return id !== school.id;
     })
@@ -225,7 +225,7 @@ export const createRandomFishSchool = (scene: OceanScene, isLarge: boolean) => {
             return { ...school };
         })
         // update the position for each fish 
-        newSchool.fishes.forEach((fish: any, index: number) => {
+        newSchool.fishes.forEach((fish: Phaser.GameObjects.Sprite, index: number) => {
             if (isEscaping) {
                 const { x: dirX, y: dirY } = school?.escapeDirections[index] as Point;
                 xChange = (dirX - x) / (repeat / 2);

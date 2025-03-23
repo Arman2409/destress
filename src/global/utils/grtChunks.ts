@@ -1,9 +1,11 @@
-const getChunks = (array: any[], perChunk: number) => {
+const getChunks = (
+    array: Object[],
+    perChunk: number) => {
     const chunks = [];
-    for(let i = 0; i < array.length / perChunk; i++){ 
-       const startIndex = i * perChunk;
-       const newChunk = array.slice(startIndex, startIndex + perChunk);
-       chunks.push(newChunk);
+    for (let i = 0; i < array.length / perChunk; i++) {
+        const startIndex = i * perChunk;
+        const newChunk = array.slice(startIndex, startIndex + perChunk);
+        chunks.push(newChunk);
     }
     return chunks;
 }

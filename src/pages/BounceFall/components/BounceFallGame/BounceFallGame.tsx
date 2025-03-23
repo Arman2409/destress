@@ -21,8 +21,8 @@ const BounceFallGame = ({
 
     const height = getVh(canvasHeight);
     const width = getVw(canvasWidth);
-    const extraX = getVw(mouseExtraX);
-    const extraY = getVh(mouseExtraY) - ballRadius;
+    const extraX = -getVw(mouseExtraX);
+    const extraY = -getVh(mouseExtraY) - ballRadius;
 
     useEffect(() => {
         if (gameInitialized.current) return;
@@ -32,7 +32,7 @@ const BounceFallGame = ({
 
         canvas.addEventListener("click", (event: MouseEvent) => {
             const { clientX, clientY } = event;
-            const newBall = new Ball(clientX - extraX, clientY - extraY, context as CanvasRenderingContext2D);
+            const newBall = new Ball(clientX + extraX, clientY + extraY, context as CanvasRenderingContext2D);
             newBall.animate();
             setBallsCount(curr => curr += 1);
         })

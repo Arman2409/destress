@@ -1,13 +1,18 @@
 import type { GameStatus, Jest } from "../../../types/roshambo";
 import { combinations } from "./data";
 
-export const defineGameStatus = (jest1: Jest | null, jest2: Jest | null): GameStatus | null => {
+export const defineGameStatus = (
+  jest1: Jest | null,
+  jest2: Jest | null
+): GameStatus | null => {
   if (!jest1 || !jest2) return null;
-  let status: GameStatus = "draw";
   if (jest1 === jest2) {
     return "draw";
   };
-  combinations.forEach((arr: any) => {
+
+  let status: GameStatus = "draw";
+
+  combinations.forEach((arr: string[]) => {
     if (arr[0] === jest1 && arr[1] === jest2) {
       status = "win";
     }
@@ -15,6 +20,7 @@ export const defineGameStatus = (jest1: Jest | null, jest2: Jest | null): GameSt
       status = "lose";
     }
   })
+
   return status;
 }
 

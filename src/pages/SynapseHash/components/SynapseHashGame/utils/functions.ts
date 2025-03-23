@@ -1,7 +1,14 @@
-import { uniqueId, randomNumber, angle as getAngle, distance, pointWithoutCollision, middle } from "pointscape";
+import {
+  uniqueId,
+  randomNumber,
+  angle as getAngle,
+  distance,
+  pointWithoutCollision,
+  middle
+} from "pointscape";
 
-import type { NetworkScene, Neuron } from "../../../../../types/synapseHash";
 import configs from "../../../../../configs/games/synapseHash";
+import type { NetworkScene, Neuron } from "../../../../../types/synapseHash";
 
 const {
   neuronsCountRange,
@@ -9,21 +16,26 @@ const {
   neuronDistanceBreakpoints
 } = { ...configs }
 
-const getNeuronTweenConfig = (target: any) => ({
+const getNeuronTweenConfig = (target: Phaser.GameObjects.Sprite) => ({
   targets: [target],
   rotation: 360,
   duration: 120000,
   repeat: -1
 })
 
-const clickNeuron = (scene: NetworkScene, neuron: Neuron, callback: Function) => {
-  const { sprite, id } = { ...neuron };
+const clickNeuron = (
+  scene: NetworkScene,
+  neuron: Neuron,
+  callback: Function) => {
+
+  const { sprite, id } = { ...neuron as Neuron };
+
   if (scene.clickedNeuron) {
     const previousClicked = scene.clickedNeuron;
-    const { id: prevId } = previousClicked;
-    previousClicked.tween.destroy();
+    const { id: prevId } = previousClicked as Neuron;
+    (previousClicked as Neuron)?.tween?.destroy();
     let hasConnection = false;
-    scene.neuronConnections.forEach((elem: any) => {
+    scene.neuronConnections.forEach((elem: [string, string]) => {
       if (elem.includes(id) && elem.includes(prevId)) {
         hasConnection = true;
       }
@@ -38,11 +50,11 @@ const clickNeuron = (scene: NetworkScene, neuron: Neuron, callback: Function) =>
     }
     scene.neuronConnections.push([prevId, id]);
     callback(scene.neuronConnections.length);
-    const { x: startX = 0, y: startY = 0 } = { ...previousClicked.sprite };
+    const { x: startX = 0, y: startY = 0 } = { ...(previousClicked as Neuron).sprite };
     const { x: endX, y: endY } = { ...neuron.sprite };
-    const angle = getAngle({x: startX, y: startY}, {x: endX, y: endY});
-    const dist = distance({x: startX,  y: startY}, {x: endX, y: endY})
-    const { x: middleX, y: middleY } = middle({x: startX, y: startY}, {x: endX, y: endY});
+    const angle = getAngle({ x: startX, y: startY }, { x: endX, y: endY });
+    const dist = distance({ x: startX, y: startY }, { x: endX, y: endY })
+    const { x: middleX, y: middleY } = middle({ x: startX, y: startY }, { x: endX, y: endY });
 
     // creating the connection sprite from one neuron to another 
     const newConnection = scene.physics.add.sprite(startX + middleX / 3, startY + middleY / 3, "connectionFrame")
@@ -67,8 +79,8 @@ const clickNeuron = (scene: NetworkScene, neuron: Neuron, callback: Function) =>
         newConnection.x = startX + middleX;
         newConnection.y = startY + middleY;
         newConnection.setScale(dist * 0.003, 1)
-      }, 250)
-      previousClicked.sprite.setRotation(-1.5 + angle);
+      }, 250);
+      (previousClicked as Neuron).sprite.setRotation(-1.5 + angle);
     }, 250)
   } else {
     scene.clickedNeuron = {

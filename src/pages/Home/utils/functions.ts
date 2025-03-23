@@ -12,7 +12,7 @@ export const handleMouseMove = (
 }
 
 export const startAnimation = (
-    context: any,
+    context: CanvasRenderingContext2D,
     width: number,
     height: number,
     particles: Particle[],) => {
