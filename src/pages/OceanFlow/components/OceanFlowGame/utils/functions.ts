@@ -1,10 +1,9 @@
 import { collision, angle as getAngle, uniqueId, pointWithoutCollision, randomNumber, randomBoolean } from "pointscape"
 
+import configs from "../../../../../configs/games/oceanFlow";
+import {getVh, getVw} from "../../../../../global/utils/getSize";
 import type { FishSchool, OceanScene } from "../../../../../types/oceanFlow";
-import type { Point } from "../../../../../types/globals";
-import configs from "../../../../../configs/oceanFlow";
-import getVw from "../../../../../globals/functions/getVw";
-import getVh from "../../../../../globals/functions/getVh";
+import type { Point } from "../../../../../types/shared";
 
 const {
     collisionDistance,
@@ -14,7 +13,7 @@ const {
     extraX,
     extraY } = { ...configs };
 const pi = Math.PI;
-// colors for fish 
+// Colors for the fish 
 const randomFishColors = [
     0xFF0000, 0x00FF00, 0x0000FF, 0xFFCC00, 0x00FFCC,
     0xCC00FF, 0xFFFFFF, 0x000000, 0xABCDEF, 0xFF6347,
@@ -40,10 +39,10 @@ export const getRandomSchoolDetails = (width: number, height: number) => {
         if (fromLeft) {
             x = 0;
             dirX = width;
-            angle = getAngle(x, y, dirX, dirY)
+            angle = getAngle({ x, y }, { x: dirX, y: dirY })
         } else {
             x = width;
-            angle = getAngle(x, y, dirX, dirY);
+            angle = getAngle({ x, y }, { x: dirX, y: dirY });
         }
         return {
             x,
@@ -61,10 +60,10 @@ export const getRandomSchoolDetails = (width: number, height: number) => {
     if (fromTop) {
         y = 0;
         dirY = height;
-        angle = getAngle(x, y, dirX, dirY)
+        angle = getAngle({ x, y }, { x: dirX, y: dirY })
     } else {
         y = height;
-        angle = getAngle(x, y, dirX, dirY)
+        angle = getAngle({ x, y }, { x: dirX, y: dirY })
     }
     return {
         x,
@@ -103,14 +102,14 @@ export const checkForCollision = (scene: OceanScene, sysWidth: number, sysHeight
         if (escapingFrom) return { ...school };
         const { x: schoolX = 0, y: schoolY = 0 } = { ...currentPosition }
         // checking if is in the range to escape 
-        if (collision(x,y, schoolX, schoolY, collisionDistance)) {
+        if (collision({x, y}, {x: schoolX, y: schoolY}, collisionDistance)) {
             callback(fishCount);
             const escapeDirections = [];
             for (let i = 0; i < fishCount; i++) {
                 const escapeDirection = getEscapeDirection(sysWidth, sysHeight);
                 escapeDirections.push(escapeDirection);
                 const { x: escapeX, y: escapeY } = { ...escapeDirection };
-                const angle = getAngle(schoolX, schoolY, escapeX, escapeY);
+                const angle = getAngle({x: schoolX, y: schoolY},{x: escapeX, y: escapeY});
                 let rotateFishIntervalRep = 0;
                 const repeatance = randomNumber(1, 5);
                 // interval to change the angle randomly several times and then to the needed angle
@@ -143,19 +142,19 @@ export const addPlants = (scene: OceanScene) => {
     const { width, height } = scene.sys.cameras.main;
     for (let i = 1; i <= plantsCount; i++) {
         // geting random points for the plants 
-        const { x, y } = pointWithoutCollision(0, width,0, height, 75, placeMents);
+        const { x, y } = pointWithoutCollision(0, width, 0, height, 75, placeMents);
         placeMents.push({ x, y });
         scene.add.sprite(x, y, "plantFrame").setScale(0.2).setDepth(1).setRotation(Math.random() * 6.24);
     }
 }
 
 
-const removeFishSchool = (school: FishSchool, scene: OceanScene) => { 
+const removeFishSchool = (school: FishSchool, scene: OceanScene) => {
     school.fishes.forEach((fish) => {
         fish.destroy();
     })
     clearInterval(school.interval);
-    scene.fishSchools = scene.fishSchools.filter(({id}:FishSchool) => {
+    scene.fishSchools = scene.fishSchools.filter(({ id }: FishSchool) => {
         return id !== school.id;
     })
 }
@@ -164,7 +163,7 @@ export const createRandomFishSchool = (scene: OceanScene, isLarge: boolean) => {
     const fishCount = Math.round(randomNumber(fishEachSchoolRange[0], fishEachSchoolRange[1]));
     const newSchool: FishSchool =
     {
-        id: uniqueId(scene.fishSchools.map(({id}:FishSchool) => id)),
+        id: uniqueId(scene.fishSchools.map(({ id }: FishSchool) => id)),
         fishes: [],
         startingPoint: { x: 0, y: 0 },
         direction: { x: 0, y: 0 },

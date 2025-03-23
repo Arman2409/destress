@@ -3,6 +3,7 @@ import BounceFall from "../pages/BounceFall/BounceFall";
 import OceanFlow from "../pages/OceanFlow/OceanFlow";
 import Roshambo from "../pages/Roshambo/Roshambo";
 import SynapseHash from "../pages/SynapseHash/SynapseHash";
+// import VoidVoyage from "../pages/VoidVoyage/VoidVoyage";
 
 export const routes = [
     {
@@ -30,4 +31,10 @@ export const routes = [
         path: "/bounceFall",
         component: BounceFall
     },
+    // This game is disabled for now 
+    // {
+    //     key: "voidVoyage",
+    //     path: "/voidVoyage",
+    //     component: VoidVoyage
+    // },
 ]

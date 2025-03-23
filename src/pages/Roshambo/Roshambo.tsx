@@ -6,12 +6,12 @@ import type { RoshamboContextDetails, GameStatus, Jest } from "../../types/rosha
 import Instruction from "./components/Instruction/Instruction";
 import Animation from "./components/Animation/Animation";
 import Summary from "./components/Summary/Summary";
-import CornerButton from "../../globals/components/CornerButton/CornerButton";
+import CornerButton from "../../global/components/CornerButton/CornerButton";
 import Score from "./components/Score/Score";
 import { defineGameStatus } from "./utils/functions";
-import updateVisitedStatus from "../../globals/functions/updateVisitedStatus";
-import configs from "../../configs/roshambo";
-import InfoWindow from "../../globals/components/InfoWindow/InfoWindow";
+import updateAndGetVisitedStatus from "../../global/utils/updateAndGetVisitedStatus";
+import configs from "../../configs/games/roshambo";
+import InfoWindow from "../../global/components/InfoWindow/InfoWindow";
 
 const { info, infoImage } = { ...configs };
 
@@ -28,7 +28,7 @@ const Roshambo = () => {
 
     useEffect(() => {
         // update local storage 
-        const visited = updateVisitedStatus("roshambo");
+        const visited = updateAndGetVisitedStatus("roshambo");
         if (!visited) {
             setShowInfo(true);
         }

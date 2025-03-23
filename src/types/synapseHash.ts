@@ -1,5 +1,5 @@
 
-import type { Point } from "./globals"
+import type { Point } from "./shared"
 
 export type Connection =  Array<[string, string]>
 

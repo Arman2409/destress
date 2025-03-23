@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom";
 
 import styles from "../../styles/pages/SynapseHash/SynapseHash.module.scss";
 import Game from "./components/SynapseHashGame/SynapseHashGame";
-import updateVisitedStatus from "../../globals/functions/updateVisitedStatus";
-import CornerButton from "../../globals/components/CornerButton/CornerButton";
-import InfoWindow from "../../globals/components/InfoWindow/InfoWindow";
-import configs from "../../configs/synapseHash";
+import updateAndGetVisitedStatus from "../../global/utils/updateAndGetVisitedStatus";
+import CornerButton from "../../global/components/CornerButton/CornerButton";
+import InfoWindow from "../../global/components/InfoWindow/InfoWindow";
+import configs from "../../configs/games/synapseHash";
 
 const { info, infoImage } = { ...configs };
 
@@ -16,7 +16,7 @@ const SynapseHash = () => {
 
     useEffect(() => {
         // update local storage 
-        const visited = updateVisitedStatus("synapseHash");
+        const visited = updateAndGetVisitedStatus("synapseHash");
         if (!visited) {
             setShowInfo(true);
         }

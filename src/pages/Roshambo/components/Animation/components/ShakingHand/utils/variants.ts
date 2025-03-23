@@ -1,6 +1,6 @@
 import type { Variants } from "framer-motion";
 
-import configs from "../../../../../../../configs/roshambo";
+import configs from "../../../../../../../configs/games/roshambo";
 
 const {
     animationDuration

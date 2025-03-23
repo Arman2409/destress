@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom";
 
 import styles from "../../styles/pages/OceanFlow/OceanFlow.module.scss";
 import Game from "./components/OceanFlowGame/OceanFlowGame";
-import CornerButton from "../../globals/components/CornerButton/CornerButton";
-import configs from "../../configs/oceanFlow";
-import updateVisitedStatus from "../../globals/functions/updateVisitedStatus";
-import InfoWindow from "../../globals/components/InfoWindow/InfoWindow";
+import CornerButton from "../../global/components/CornerButton/CornerButton";
+import configs from "../../configs/games/oceanFlow";
+import updateAndGetVisitedStatus from "../../global/utils/updateAndGetVisitedStatus";
+import InfoWindow from "../../global/components/InfoWindow/InfoWindow";
 
 const { info, infoImage, infoImage2 } = { ...configs };
 
@@ -14,11 +14,14 @@ const OceanFlow = () => {
     const [showInfo, setShowInfo] = useState<boolean>(false);
     const navigate = useNavigate();
 
-    const changeShowStatus = useCallback((newStatus:boolean) => setShowInfo(newStatus), [setShowInfo])
+    const changeShowStatus = useCallback((newStatus: boolean) => {
+        setShowInfo(newStatus)
+    }, [setShowInfo])
 
     useEffect(() => {
-        // update local storage 
-        const visited = updateVisitedStatus("oceanFlow");
+        // Update local storage for visited status
+        const visited = updateAndGetVisitedStatus("oceanFlow");
+
         if (!visited) {
             setShowInfo(true);
         }

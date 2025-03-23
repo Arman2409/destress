@@ -29,5 +29,7 @@
 
     &_mouse_canvas {
         position: absolute;
+        z-index: 10;
+        pointer-events: none;
     }
 }

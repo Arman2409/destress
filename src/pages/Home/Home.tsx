@@ -1,12 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 
 import styles from "../../styles/pages/Home/Home.module.scss";
+import Loading from "../../global/components/Loading/Loading";
+import configs from "../../configs/home";
+
 import GameTiles from "./components/GameTiles/GameTiles";
 import Greeting from "./components/Greeting/Greeting";
 import Footer from "./components/Footer/Footer";
-import Loading from "../../globals/components/Loading/Loading";
 import { Particle } from "./utils/Particle/Particle";
-import configs from "../../configs/home";
 import { handleMouseMove, startAnimation } from "./utils/functions";
 
 const { mouseCanvasSize, particlesCount, particleSize, particleColor } = { ...configs };
@@ -21,15 +22,19 @@ const Home = () => {
     const mouseCanvas = document.createElement("canvas");
     mouseCanvas.width = mouseCanvasSize;
     mouseCanvas.height = mouseCanvasSize;
+
     const context = mouseCanvas.getContext("2d");
     document.addEventListener('mousemove', (event: MouseEvent) => mouseMoveHandler(event));
     const particles: Particle[] = [];
+
     for (let i = 0; i < particlesCount; i++) {
       const newParticle = new Particle(particleSize, particleColor, mouseCanvasSize, mouseCanvasSize, context);
       particles.push(newParticle);
     }
+
     startAnimation(context, mouseCanvas.width, mouseCanvas.height, particles);
     mouseCanvasCont.current.appendChild(mouseCanvas);
+
     return document.removeEventListener("mousemove", mouseMoveHandler);
   }, [])
 

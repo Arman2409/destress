@@ -1,10 +1,10 @@
-export type SubtitleDetails = {
+export interface SubtitleDetails {
     width: number
     spacing: number
 }
 
 // props 
-export type GameTilesProps = {
+export interface GameTilesProps {
     choseGame: Function
 }
 
@@ -13,10 +13,10 @@ export type TileProps = Omit<Game, "order"> & {
     cornerInitialized?: boolean
 }
 
-export type CornerButtonProps = {
+export interface CornerButtonProps {
     type: "info" | "back"
-    extraStyles?: any 
-    action?: any
+    extraStyles?: Record<string, string>
+    action?: () => void
 }
 
 // interfaces 

@@ -1,7 +1,7 @@
-import { uniqueId, randomNumber, angle as getAngle, distance, pointWithoutCollision, middlePoint } from "pointscape";
+import { uniqueId, randomNumber, angle as getAngle, distance, pointWithoutCollision, middle } from "pointscape";
 
 import type { NetworkScene, Neuron } from "../../../../../types/synapseHash";
-import configs from "../../../../../configs/synapseHash";
+import configs from "../../../../../configs/games/synapseHash";
 
 const {
   neuronsCountRange,
@@ -40,9 +40,10 @@ const clickNeuron = (scene: NetworkScene, neuron: Neuron, callback: Function) =>
     callback(scene.neuronConnections.length);
     const { x: startX = 0, y: startY = 0 } = { ...previousClicked.sprite };
     const { x: endX, y: endY } = { ...neuron.sprite };
-    const angle = getAngle(startX, startY, endX, endY);
-    const dist = distance(startX,  startY, endX, endY)
-    const { x: middleX, y: middleY } = middlePoint(startX, startY, endX, endY);
+    const angle = getAngle({x: startX, y: startY}, {x: endX, y: endY});
+    const dist = distance({x: startX,  y: startY}, {x: endX, y: endY})
+    const { x: middleX, y: middleY } = middle({x: startX, y: startY}, {x: endX, y: endY});
+
     // creating the connection sprite from one neuron to another 
     const newConnection = scene.physics.add.sprite(startX + middleX / 3, startY + middleY / 3, "connectionFrame")
       .setRotation(-Math.PI / 2 + angle)

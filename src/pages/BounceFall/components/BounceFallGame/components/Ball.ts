@@ -1,5 +1,5 @@
 import type { DirectionStatus, BallStatus, GradientCoordinates } from "../../../../../types/bounceFall";
-import configs from "../../../../../configs/bounceFall";
+import configs from "../../../../../configs/games/bounceFall";
 import { getGradientCoordinates, getRandomColors, addBallStyles } from "./utils/ballFunctions";
 
 const { fallSpeed, colorsPerBall, rollingSpeed, stopHeightExtra,
@@ -29,7 +29,7 @@ export class Ball {
     constructor(
         x: number,
         y: number,
-        ctx: any,
+        ctx: CanvasRenderingContext2D,
     ) {
         if (typeof ctx !== "object") {
             console.error("Canvas context not provided");
@@ -55,7 +55,7 @@ export class Ball {
     animate = () => {
         const { stoppedGradient, status, ctx,
             draw, animate, handleFalling, handleRolling, handleBouncing } = { ...this };
-        ctx.beginPath();
+        ctx?.beginPath();
         if (status === "stopped") {
             draw("circle", undefined, undefined, undefined, stoppedGradient);
             requestAnimationFrame(animate);
@@ -83,10 +83,10 @@ export class Ball {
         extraY?: number,
         gradient?: GradientCoordinates) => {
         const { x, y, radius, rotation, colors, ctx } = { ...this }
-        if (type === "circle") ctx.arc(x, y, radius, 0, Math.PI * 2, false);
-        if (type === "ellipse") ctx.ellipse(x, extraY ? y + extraY : y, ellipseX, ellipseY, 0, 0, Math.PI * 2);
-        addBallStyles(x, y, radius, rotation, colors, ctx, colorsPerBall, gradient);
-        ctx.restore();
+        if (type === "circle") ctx?.arc(x, y, radius, 0, Math.PI * 2, false);
+        if (type === "ellipse") ctx?.ellipse(x, extraY ? y + extraY : y, ellipseX as number, ellipseY as number, 0, 0, Math.PI * 2);
+        addBallStyles(x, y, radius, rotation, colors, ctx as CanvasRenderingContext2D, colorsPerBall, gradient);
+        ctx?.restore();
     }
 
     private handleRolling = () => {
