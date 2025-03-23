@@ -12,6 +12,8 @@ import { defineGameStatus } from "./utils/functions";
 import updateAndGetVisitedStatus from "../../global/utils/updateAndGetVisitedStatus";
 import configs from "../../configs/games/roshambo";
 import InfoWindow from "../../global/components/InfoWindow/InfoWindow";
+import { getIsMobile } from "../../global/utils/dimesions";
+import { getHasMobile } from "../../global/utils/getHasMobile";
 
 const { info, infoImage } = { ...configs };
 
@@ -27,6 +29,13 @@ const Roshambo = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
+        const isMobile = getIsMobile();
+        const hasMobile = getHasMobile("Ocean Flow");
+
+        if (isMobile && !hasMobile) {
+            navigate("/");
+        }
+
         // update local storage 
         const visited = updateAndGetVisitedStatus("roshambo");
         if (!visited) {
@@ -70,7 +79,7 @@ const Roshambo = () => {
             <div className={styles.roshambo_main}>
                 <CornerButton
                     type="back"
-                   />
+                />
                 <CornerButton
                     type="info"
                     action={() => setShowInfo(true)}
