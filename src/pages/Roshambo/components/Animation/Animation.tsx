@@ -5,7 +5,7 @@ import type { Jest, WindowSize } from "../../../../types/roshambo";
 import ShakingHand from "./components/ShakingHand/ShakingHand";
 import { RoshamboContext } from "../../Roshambo";
 import { getRandomBackground, getRandomJest, getBackgroundsArr } from "./utils/functions";
-import configs from "../../../../configs/roshambo";
+import configs from "../../../../configs/games/roshambo";
 
 const {
   animationDuration,

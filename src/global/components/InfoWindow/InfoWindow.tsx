@@ -3,7 +3,7 @@ import { AiOutlineClose } from "react-icons/ai";
 import Button from "antd/lib/button";
 
 import styles from "../../../styles/globals/components/InfoWindow.module.scss";
-import type { InfoDetailsProps } from "../../../types/globals";
+import type { InfoDetailsProps } from "../../../types/shared";
 import { infoWindowVariants } from "./utils/variants";
 
 const InfoWindow = ({ visible,

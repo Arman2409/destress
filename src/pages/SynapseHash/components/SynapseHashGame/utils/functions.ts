@@ -1,7 +1,7 @@
 import { uniqueId, randomNumber, angle as getAngle, distance, pointWithoutCollision, middle } from "pointscape";
 
 import type { NetworkScene, Neuron } from "../../../../../types/synapseHash";
-import configs from "../../../../../configs/synapseHash";
+import configs from "../../../../../configs/games/synapseHash";
 
 const {
   neuronsCountRange,

@@ -66,7 +66,7 @@ export const addBallStyles = (
     radius: number,
     rotation: number,
     colors: string[],
-    ctx: any,
+    ctx: CanvasRenderingContext2D,
     colorsPerBall: number,
     defaultGradient?: GradientCoordinates,
 ): void => {

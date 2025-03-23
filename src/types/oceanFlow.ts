@@ -1,4 +1,4 @@
-import type { Point } from "./globals"
+import type { Point } from "./shared"
 
 // props
 

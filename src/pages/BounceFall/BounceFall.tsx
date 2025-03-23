@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom";
 
 import styles from "../../styles/pages/BounceFall/BounceFall.module.scss";
 import Game from "./components/BounceFallGame/BounceFallGame";
-import CornerButton from "../../globals/components/CornerButton/CornerButton";
-import configs from "../../configs/bounceFall";
-import updateVisitedStatus from "../../globals/functions/updateVisitedStatus";
-import InfoWindow from "../../globals/components/InfoWindow/InfoWindow";
+import CornerButton from "../../global/components/CornerButton/CornerButton";
+import configs from "../../configs/games/bounceFall";
+import updateAndGetVisitedStatus from "../../global/utils/updateAndGetVisitedStatus";
+import InfoWindow from "../../global/components/InfoWindow/InfoWindow";
 
 const { info, infoImage, infoImage2, mouseExtraX, mouseExtraY, ballRadius } = { ...configs };
 
@@ -18,7 +18,7 @@ const BounceFall = () => {
 
     useEffect(() => {
         // update local storage 
-        const visited = updateVisitedStatus("bounceFall");
+        const visited = updateAndGetVisitedStatus("bounceFall");
         if (!visited) {
             setShowInfo(true);
         }

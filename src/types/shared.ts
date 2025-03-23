@@ -1,4 +1,5 @@
 import type { ReactNode } from "react"
+import React from "react"
 
 export interface InfoDetailsProps {
     confirmText: string
@@ -21,7 +22,14 @@ export interface ScoreAlertProps {
     mode: "custom" | "extra"
     score?: number 
 }
+
 export interface Point {
     x: number
     y: number
- }
+}
+
+export interface RouteData {
+    key: string,
+    path: string,
+    component: () => JSX.Element
+}

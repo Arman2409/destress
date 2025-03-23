@@ -5,8 +5,8 @@ import { motion } from "framer-motion";
 import { FaInfo } from "react-icons/fa";
 
 import styles from "../../../styles/globals/components/CornerButton.module.scss";
-import type { CornerButtonProps } from "../../../types/home";
 import { arrowIconVariants } from "./utils/variants";
+import type { CornerButtonProps } from "../../../types/home";
 
 const BackButton = ({ extraStyles = {}, action, type = "back" }: CornerButtonProps) => {
     const [hovered, setHovered] = useState<boolean>(false)
@@ -22,10 +22,10 @@ const BackButton = ({ extraStyles = {}, action, type = "back" }: CornerButtonPro
                     left: "10px",
                     ...extraStyles,
                 } : 
-                type === "info" && {
+                type === "info" ? {
                     right: "10px",
-                ...extraStyles
-            }}
+                ...extraStyles,
+            } : {}}
             onClick={action || goBack}
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}

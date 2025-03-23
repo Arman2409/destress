@@ -7,7 +7,7 @@ import type { GameStatus } from "../../../../types/roshambo";
 import { RoshamboContext } from "../../Roshambo";
 import { defineGameStatus } from "../../utils/functions";
 import { statusesData } from "./utils/data";
-import configs from "../../../../configs/roshambo";
+import configs from "../../../../configs/games/roshambo";
 
 const { summaryWaitTime } = { ...configs };
 const { texts, colors } = { ...statusesData };

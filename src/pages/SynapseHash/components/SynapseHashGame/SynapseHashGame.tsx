@@ -5,11 +5,11 @@ import { FaPlay } from "react-icons/fa";
 
 import styles from "../../../../styles/pages/SynapseHash/components/SynapseHashGame/SynapseHashGame.module.scss";
 import type { Neuron, Connection } from "../../../../types/synapseHash";
-import configs from "../../../../configs/synapseHash";
+import configs from "../../../../configs/games/synapseHash";
 import { addRandomNeurons } from "./utils/functions";
-import ScoreAlert from "../../../../globals/components/ScoreAlert/ScoreAlert";
+import ScoreAlert from "../../../../global/components/ScoreAlert/ScoreAlert";
 import CompleteAlert from "./components/CompletedAlert/CompletedAlert";
-import Loading from "../../../../globals/components/Loading/Loading";
+import Loading from "../../../../global/components/Loading/Loading";
 import { getConfig } from "./utils/config";
 
 const {

@@ -1,10 +1,9 @@
 import { collision, angle as getAngle, uniqueId, pointWithoutCollision, randomNumber, randomBoolean } from "pointscape"
 
+import configs from "../../../../../configs/games/oceanFlow";
+import {getVh, getVw} from "../../../../../global/utils/getSize";
 import type { FishSchool, OceanScene } from "../../../../../types/oceanFlow";
-import type { Point } from "../../../../../types/globals";
-import configs from "../../../../../configs/oceanFlow";
-import getVw from "../../../../../globals/functions/getVw";
-import getVh from "../../../../../globals/functions/getVh";
+import type { Point } from "../../../../../types/shared";
 
 const {
     collisionDistance,
@@ -14,7 +13,7 @@ const {
     extraX,
     extraY } = { ...configs };
 const pi = Math.PI;
-// colors for fish 
+// Colors for the fish 
 const randomFishColors = [
     0xFF0000, 0x00FF00, 0x0000FF, 0xFFCC00, 0x00FFCC,
     0xCC00FF, 0xFFFFFF, 0x000000, 0xABCDEF, 0xFF6347,

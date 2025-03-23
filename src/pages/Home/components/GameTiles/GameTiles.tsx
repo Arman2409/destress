@@ -1,21 +1,27 @@
 import { useEffect, useState } from "react";
 
 import styles from "../../../../styles/pages/Home/components/GameTiles/GameTiles.module.scss";
-import type { GameTilesProps, Game } from "../../../../types/home";
 import configs from "../../../../configs/home";
+import getChunks from "../../../../global/utils/grtChunks";
 import { gamesData } from "./utils/data";
-import Tile from "./components/Tile/Tile";
-import getChunks from "../../../../globals/functions/grtChunks";
+import GameTile from "./components/GameTile/GameTile";
+import type { GameTilesProps, Game } from "../../../../types/home";
 
 const { cornerImageInitialingDuration } = { ...configs };
 
 const GameTiles = ({ choseGame }: GameTilesProps) => {
     const [initializedCorners, setInitializedCorners] = useState<boolean>(false);
 
-    const games = gamesData.sort(({ order }, { order: currOrder }) => {
-        return order - currOrder;
-    })
-    const gameGroups = getChunks(games, 3);
+    const games = gamesData.sort(
+        (
+            { order },
+            { order: currOrder }
+        ) => {
+            return order - currOrder;
+        }
+    )
+
+    const gameGroups = getChunks(games, 2);
 
     useEffect(() => {
         setTimeout(() => {
@@ -31,7 +37,7 @@ const GameTiles = ({ choseGame }: GameTilesProps) => {
                         key={index}
                         className={styles.games_group}>
                         {games.map((game: Game) => (
-                            <Tile
+                            <GameTile
                                 key={game.order}
                                 choseGame={choseGame}
                                 cornerInitialized={initializedCorners}
