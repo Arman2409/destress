@@ -8,7 +8,7 @@ export interface GameTilesProps {
     choseGame: Function
 }
 
-export type TileProps = Omit<Game, "order"> & {
+export type GameTileProps = Omit<Game, "order"> & {
     choseGame: Function
     cornerInitialized?: boolean
 }
@@ -26,4 +26,5 @@ export interface Game {
     link: string
     cornerImage: string
     name: string
+    hasMobile: boolean
 }

@@ -7,6 +7,8 @@ import updateAndGetVisitedStatus from "../../global/utils/updateAndGetVisitedSta
 import CornerButton from "../../global/components/CornerButton/CornerButton";
 import InfoWindow from "../../global/components/InfoWindow/InfoWindow";
 import configs from "../../configs/games/synapseHash";
+import { getIsMobile } from "../../global/utils/dimesions";
+import { getHasMobile } from "../../global/utils/getHasMobile";
 
 const { info, infoImage } = { ...configs };
 
@@ -15,7 +17,14 @@ const SynapseHash = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        // update local storage 
+        const isMobile = getIsMobile();
+        const hasMobile = getHasMobile("Synapse Hash");
+
+        if (isMobile && !hasMobile) {
+            navigate("/");
+        }
+
+        // Update local storage for visited status
         const visited = updateAndGetVisitedStatus("synapseHash");
         if (!visited) {
             setShowInfo(true);

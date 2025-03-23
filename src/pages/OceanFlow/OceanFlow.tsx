@@ -2,11 +2,13 @@ import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import styles from "../../styles/pages/OceanFlow/OceanFlow.module.scss";
-import Game from "./components/OceanFlowGame/OceanFlowGame";
 import CornerButton from "../../global/components/CornerButton/CornerButton";
 import configs from "../../configs/games/oceanFlow";
 import updateAndGetVisitedStatus from "../../global/utils/updateAndGetVisitedStatus";
 import InfoWindow from "../../global/components/InfoWindow/InfoWindow";
+import { getIsMobile } from "../../global/utils/dimesions";
+import { getHasMobile } from "../../global/utils/getHasMobile";
+import Game from "./components/OceanFlowGame/OceanFlowGame";
 
 const { info, infoImage, infoImage2 } = { ...configs };
 
@@ -19,6 +21,13 @@ const OceanFlow = () => {
     }, [setShowInfo])
 
     useEffect(() => {
+        const isMobile = getIsMobile();
+        const hasMobile = getHasMobile("Ocean Flow");
+
+        if (isMobile && !hasMobile) {
+            navigate("/");
+        }
+
         // Update local storage for visited status
         const visited = updateAndGetVisitedStatus("oceanFlow");
 
