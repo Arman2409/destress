@@ -36,7 +36,7 @@ const Roshambo = () => {
             navigate("/");
         }
 
-        // update local storage 
+        // Update local storage for visited status
         const visited = updateAndGetVisitedStatus("roshambo");
         if (!visited) {
             setShowInfo(true);
@@ -86,9 +86,8 @@ const Roshambo = () => {
                 />
                 <div className={styles.roshambo_cont}>
                     <Score />
-                    {chosenJest ? <Animation />
-                        : <Instruction />}
-                    {opponentJest && <Summary />}
+                    {chosenJest ? <Animation /> : <Instruction />}
+                    <Summary />
                 </div>
             </div>
         </RoshamboContext.Provider>

@@ -18,7 +18,7 @@ const OceanFlow = () => {
 
     const changeShowStatus = useCallback((newStatus: boolean) => {
         setShowInfo(newStatus)
-    }, [setShowInfo, navigate])
+    }, [setShowInfo])
 
     useEffect(() => {
         const isMobile = getIsMobile();

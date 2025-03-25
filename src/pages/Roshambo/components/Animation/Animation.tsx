@@ -20,7 +20,9 @@ const Animation = () => {
   const [imageLoaded, setImageLoaded] = useState<boolean>();
   const [windowSize, setWindowSize] = useState<WindowSize>(window.innerWidth > 680 ? "large" : window.innerWidth > 480 ? "medium" : "small");
   const { chosenJest, dispatchOpponentJest, opponentJest } = useContext(RoshamboContext);
+
   const opponentJestMemo = useMemo<Jest>(() => opponentJest || getRandomJest(), [opponentJest]);
+  
   const backgroundMemo = useMemo<string>(() => getRandomBackground(imageBackgrounds), []);
 
   useEffect(() => {

@@ -1,13 +1,13 @@
 import { useContext, useEffect, useState } from "react";
-import { PiWineBold } from "react-icons/pi";
-import { FaHeartBroken, FaEquals } from "react-icons/fa";
 
 import styles from "../../../../styles/pages/Roshambo/components/Summary/Summary.module.scss";
-import type { GameStatus } from "../../../../types/roshambo";
+import configs from "../../../../configs/games/roshambo";
+import useDebounce from "../../../../utils/hooks/useDebounce";
 import { RoshamboContext } from "../../Roshambo";
 import { defineGameStatus } from "../../utils/functions";
 import { statusesData } from "./utils/data";
-import configs from "../../../../configs/games/roshambo";
+import { gameStatusIcons } from "./utils/helpers";
+import type { GameStatus, Jest } from "../../../../types/roshambo";
 
 const { summaryWaitTime } = { ...configs };
 const { texts, colors } = { ...statusesData };
@@ -16,20 +16,29 @@ const Summary = () => {
   const { chosenJest, opponentJest, dispatchJest, dispatchOpponentJest } = useContext(RoshamboContext);
   const [gameStatus, setGameStatus] = useState<GameStatus>("draw");
 
-  useEffect(() => {
-    const gameStatus = defineGameStatus(chosenJest || "rock", opponentJest || "rock");
-    setGameStatus(gameStatus || "draw");
-  }, [chosenJest, opponentJest, gameStatus, setGameStatus])
+  const debouncedOpponentJest = useDebounce(opponentJest, summaryWaitTime * 1000)
 
   useEffect(() => {
-    setTimeout(() => {
-      dispatchOpponentJest(null);
-      dispatchJest(null);
-    }, summaryWaitTime * 1000)
-  }, [dispatchOpponentJest, dispatchJest])
+    if (debouncedOpponentJest && chosenJest) {
+      const gameStatus = defineGameStatus(chosenJest || "rock", debouncedOpponentJest as Jest || "rock");
+      setGameStatus(gameStatus || "draw");
 
+      setTimeout(() => {
+        dispatchOpponentJest(null);
+        dispatchJest(null);
+      }, 1000)
+    }
+
+  }, [chosenJest, debouncedOpponentJest, dispatchOpponentJest, dispatchJest, gameStatus, setGameStatus]);
+
+  const Icon = gameStatusIcons.get(gameStatus);
+  
   return (
-    <div className="absolute_background centered">
+    <div
+      className="absolute_background centered"
+      style={{
+        visibility: debouncedOpponentJest && opponentJest ? "visible" : "hidden",
+      }}>
       <div className="absolute_background demo" />
       <div className={styles.summary_content}>
         <h2 className={styles.summary_title}>
@@ -38,9 +47,7 @@ const Summary = () => {
         <p style={{
           color: colors[gameStatus as keyof typeof texts]
         }}>
-          {gameStatus === "win" && <PiWineBold />}
-          {gameStatus === "lose" && <FaHeartBroken />}
-          {gameStatus === "draw" && <FaEquals />}
+          {Icon}
         </p>
       </div>
     </div>

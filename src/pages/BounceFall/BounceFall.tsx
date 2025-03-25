@@ -20,13 +20,7 @@ const BounceFall = () => {
     
     useEffect(() => {
         const isMobile = getIsMobile();
-
-        console.log("Test getIsMobile, result:", getIsMobile());
-        
         const hasMobile = getHasMobile("Bounce Fall");
-
-        console.log("Test getHasMobile, result:", getHasMobile("bounceFall"));
-
 
         if(isMobile && !hasMobile) {
             navigate("/");

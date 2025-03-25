@@ -9,8 +9,8 @@ const Score = () => {
   const [userScores, setUserScores] = useState(0);
   const [opponentScores, setOpponentScores] = useState(0);
   const { opponentScore, userScore } = useContext(RoshamboContext);
-  // define which side of the score window should be animated 
 
+  // define which side of the score window should be animated 
   useEffect(() => {
     setTimeout(() => {
       setUserScores(userScore);
