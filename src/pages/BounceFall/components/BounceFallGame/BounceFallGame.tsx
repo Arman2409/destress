@@ -4,7 +4,7 @@ import styles from "../../../../styles/pages/BounceFall/components/BounceFallGam
 import type { BounceGameProps } from "../../../../types/bounceFall";
 import ScoreAlert from "../../../../components/ScoreAlert/ScoreAlert";
 import Loading from "../../../../components/Loading/Loading";
-import { getVh, getVw } from "../../../../utils/helpers/getSize";
+import { getVh, getVw } from "../../../../utils/helpers/dimesions";
 import { Ball } from "./components/Ball";
 
 const BounceFallGame = ({

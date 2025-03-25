@@ -1,7 +1,7 @@
 import { collision, angle as getAngle, uniqueId, pointWithoutCollision, randomNumber, randomBoolean } from "pointscape"
 
 import configs from "../../../../../configs/games/oceanFlow";
-import {getVh, getVw} from "../../../../../utils/helpers/getSize";
+import {getVh, getVw} from "../../../../../utils/helpers/dimesions";
 import type { FishSchool, OceanScene } from "../../../../../types/oceanFlow";
 import type { Point } from "../../../../../types/shared";
 
