@@ -1,12 +1,13 @@
 import type { Point } from "./shared"
 
-// props
+// Props
 
 export type ScoreProps = {
     score: number
 }
 
-// interfaces 
+// Interfaces
+
 export interface FishSchool {
     id: string
     fishes: Array<Phaser.GameObjects.Sprite>
@@ -15,12 +16,11 @@ export interface FishSchool {
     direction: Point
     interval: string | number | undefined | unknown
     currentPosition: Point
-    escapingFrom: null|Point
+    escapingFrom: null | Point
     escapeDirections: Array<Point>
 }
 
-export interface OceanScene extends Phaser.Scene
-{
-    jellyfish:  Phaser.GameObjects.Sprite
+export interface OceanScene extends Phaser.Scene {
+    jellyfish: Phaser.GameObjects.Sprite
     fishSchools: FishSchool[]
 }

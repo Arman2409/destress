@@ -3,7 +3,8 @@ export interface SubtitleDetails {
     spacing: number
 }
 
-// props 
+// Props
+ 
 export interface GameTilesProps {
     choseGame: Function
 }
@@ -19,7 +20,8 @@ export interface CornerButtonProps {
     action?: () => void
 }
 
-// interfaces 
+// Interfaces 
+
 export interface Game {
     order: number
     image: string

@@ -2,7 +2,7 @@ export type BallStatus = "bouncing" | "rolling" | "falling" | "stopped"
 
 export type DirectionStatus = "left" | "right" | false
 
-// props 
+// Props 
 
 export type BounceGameProps = {
     canvasHeight: number
@@ -11,7 +11,9 @@ export type BounceGameProps = {
     mouseExtraY: number
     ballRadius: number
 }
-// interfaces 
+
+// Interfaces 
+
 export interface GradientCoordinates {
     startX: number
     startY: number

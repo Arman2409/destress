@@ -71,6 +71,7 @@ const Game = () => {
         new Phaser.Game(getConfig(gameScene));
         setInitializeGame(false);
         setLoading(false)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [showSkipStatus, size, setInitializeGame, setLoading, setConnectionsCount, setShowSkipStatus])
 
     useEffect(() => {
