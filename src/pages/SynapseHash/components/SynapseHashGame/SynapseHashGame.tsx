@@ -5,8 +5,8 @@ import { FaPlay } from "react-icons/fa";
 
 import styles from "../../../../styles/pages/SynapseHash/components/SynapseHashGame/SynapseHashGame.module.scss";
 import configs from "../../../../configs/games/synapseHash";
-import ScoreAlert from "../../../../global/components/ScoreAlert/ScoreAlert";
-import Loading from "../../../../global/components/Loading/Loading";
+import ScoreAlert from "../../../../components/ScoreAlert/ScoreAlert";
+import Loading from "../../../../components/Loading/Loading";
 import { getConfig } from "./utils/config";
 import { addRandomNeurons } from "./utils/functions";
 import CompleteAlert from "./components/CompletedAlert/CompletedAlert";

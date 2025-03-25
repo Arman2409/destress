@@ -2,9 +2,9 @@ import { useEffect, useRef, useState } from "react";
 
 import styles from "../../../../styles/pages/BounceFall/components/BounceFallGame.module.scss";
 import type { BounceGameProps } from "../../../../types/bounceFall";
-import ScoreAlert from "../../../../global/components/ScoreAlert/ScoreAlert";
-import Loading from "../../../../global/components/Loading/Loading";
-import { getVh, getVw } from "../../../../global/utils/getSize";
+import ScoreAlert from "../../../../components/ScoreAlert/ScoreAlert";
+import Loading from "../../../../components/Loading/Loading";
+import { getVh, getVw } from "../../../../utils/helpers/getSize";
 import { Ball } from "./components/Ball";
 
 const BounceFallGame = ({

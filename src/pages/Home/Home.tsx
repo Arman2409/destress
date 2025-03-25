@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 
 import styles from "../../styles/pages/Home/Home.module.scss";
-import Loading from "../../global/components/Loading/Loading";
+import Loading from "../../components/Loading/Loading";
 import configs from "../../configs/home";
 
 import GameTiles from "./components/GameTiles/GameTiles";

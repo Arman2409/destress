@@ -4,9 +4,9 @@ import { FaArrowLeft } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { FaInfo } from "react-icons/fa";
 
-import styles from "../../../styles/globals/components/CornerButton.module.scss";
+import styles from "../../styles/globals/components/CornerButton.module.scss";
 import { arrowIconVariants } from "./utils/variants";
-import type { CornerButtonProps } from "../../../types/home";
+import type { CornerButtonProps } from "../../types/home";
 
 const BackButton = ({ extraStyles = {}, action, type = "back" }: CornerButtonProps) => {
     const [hovered, setHovered] = useState<boolean>(false)

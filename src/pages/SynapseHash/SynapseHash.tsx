@@ -3,12 +3,12 @@ import { useNavigate } from "react-router-dom";
 
 import styles from "../../styles/pages/SynapseHash/SynapseHash.module.scss";
 import Game from "./components/SynapseHashGame/SynapseHashGame";
-import updateAndGetVisitedStatus from "../../global/utils/updateAndGetVisitedStatus";
-import CornerButton from "../../global/components/CornerButton/CornerButton";
-import InfoWindow from "../../global/components/InfoWindow/InfoWindow";
+import updateAndGetVisitedStatus from "../../utils/helpers/updateAndGetVisitedStatus";
+import CornerButton from "../../components/CornerButton/CornerButton";
+import InfoWindow from "../../components/InfoWindow/InfoWindow";
 import configs from "../../configs/games/synapseHash";
-import { getIsMobile } from "../../global/utils/dimesions";
-import { getHasMobile } from "../../global/utils/getHasMobile";
+import { getIsMobile } from "../../utils/helpers/dimesions";
+import { getHasMobile } from "../../utils/helpers/getHasMobile";
 
 const { info, infoImage } = { ...configs };
 
@@ -29,7 +29,7 @@ const SynapseHash = () => {
         if (!visited) {
             setShowInfo(true);
         }
-    }, [setShowInfo])
+    }, [setShowInfo, navigate])
 
     return (
         <div className={styles.synapseHash_main}>

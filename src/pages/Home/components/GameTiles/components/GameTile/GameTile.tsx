@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
 import styles from "../../../../../../styles/pages/Home/components/GameTiles/Tile.module.scss";
-import { getIsMobile } from "../../../../../../global/utils/dimesions";
+import { getIsMobile } from "../../../../../../utils/helpers/dimesions";
 import { backgroundImageVariants, cornerImageInitializeVariants, getCornerImageVariants, getTitleVariants } from "./utils/variants";
 import type { GameTileProps } from "../../../../../../types/home";
 
@@ -26,7 +26,7 @@ const GameTile = ({
             navigate("/" + link)
             choseGame && choseGame();
         }
-    }, [choseGame, navigate, link]);
+    }, [choseGame, navigate, link, hasMobile, isMobile]);
 
     useEffect(() => {
         setIsMobile(getIsMobile());

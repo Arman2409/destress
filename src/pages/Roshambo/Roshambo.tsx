@@ -6,14 +6,14 @@ import type { RoshamboContextDetails, GameStatus, Jest } from "../../types/rosha
 import Instruction from "./components/Instruction/Instruction";
 import Animation from "./components/Animation/Animation";
 import Summary from "./components/Summary/Summary";
-import CornerButton from "../../global/components/CornerButton/CornerButton";
+import CornerButton from "../../components/CornerButton/CornerButton";
 import Score from "./components/Score/Score";
 import { defineGameStatus } from "./utils/functions";
-import updateAndGetVisitedStatus from "../../global/utils/updateAndGetVisitedStatus";
+import updateAndGetVisitedStatus from "../../utils/helpers/updateAndGetVisitedStatus";
 import configs from "../../configs/games/roshambo";
-import InfoWindow from "../../global/components/InfoWindow/InfoWindow";
-import { getIsMobile } from "../../global/utils/dimesions";
-import { getHasMobile } from "../../global/utils/getHasMobile";
+import InfoWindow from "../../components/InfoWindow/InfoWindow";
+import { getIsMobile } from "../../utils/helpers/dimesions";
+import { getHasMobile } from "../../utils/helpers/getHasMobile";
 
 const { info, infoImage } = { ...configs };
 
@@ -41,7 +41,7 @@ const Roshambo = () => {
         if (!visited) {
             setShowInfo(true);
         }
-    }, [setShowInfo])
+    }, [setShowInfo, navigate])
 
     useEffect(() => {
         if (chosenJest && opponentJest) {

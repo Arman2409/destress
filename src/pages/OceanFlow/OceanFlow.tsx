@@ -2,12 +2,12 @@ import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import styles from "../../styles/pages/OceanFlow/OceanFlow.module.scss";
-import CornerButton from "../../global/components/CornerButton/CornerButton";
+import CornerButton from "../../components/CornerButton/CornerButton";
 import configs from "../../configs/games/oceanFlow";
-import updateAndGetVisitedStatus from "../../global/utils/updateAndGetVisitedStatus";
-import InfoWindow from "../../global/components/InfoWindow/InfoWindow";
-import { getIsMobile } from "../../global/utils/dimesions";
-import { getHasMobile } from "../../global/utils/getHasMobile";
+import updateAndGetVisitedStatus from "../../utils/helpers/updateAndGetVisitedStatus";
+import InfoWindow from "../../components/InfoWindow/InfoWindow";
+import { getIsMobile } from "../../utils/helpers/dimesions";
+import { getHasMobile } from "../../utils/helpers/getHasMobile";
 import Game from "./components/OceanFlowGame/OceanFlowGame";
 
 const { info, infoImage, infoImage2 } = { ...configs };
@@ -18,7 +18,7 @@ const OceanFlow = () => {
 
     const changeShowStatus = useCallback((newStatus: boolean) => {
         setShowInfo(newStatus)
-    }, [setShowInfo])
+    }, [setShowInfo, navigate])
 
     useEffect(() => {
         const isMobile = getIsMobile();
@@ -34,7 +34,7 @@ const OceanFlow = () => {
         if (!visited) {
             setShowInfo(true);
         }
-    }, [setShowInfo])
+    }, [setShowInfo, navigate])
 
     return (
         <div className={styles.ocean_flow_main}>

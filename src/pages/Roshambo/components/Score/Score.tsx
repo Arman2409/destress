@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import styles from "../../../../styles/pages/Roshambo/components/Score/Score.module.scss";
 import { RoshamboContext } from "../../Roshambo";
 import AnimatingScores from "./components/AnimatingScores/AnimatingScores";
-import ScoreAlert from "../../../../global/components/ScoreAlert/ScoreAlert";
+import ScoreAlert from "../../../../components/ScoreAlert/ScoreAlert";
 
 const Score = () => {
   const [userScores, setUserScores] = useState(0);
