@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 
-import styles from "../../../styles/globals/components/ScoreAlert.module.scss";
+import styles from "../../styles/globals/components/ScoreAlert.module.scss";
 import { scoreContVariants } from "./utils/variants";
-import type { ScoreAlertProps } from "../../../types/shared";
+import type { ScoreAlertProps } from "../../types/shared";
 
 const ScoreAlert = ({ content, mode = "custom", score, width, height }: ScoreAlertProps) => {
     const scoreWidth = width ? width : 125;

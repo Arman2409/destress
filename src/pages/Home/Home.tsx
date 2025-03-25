@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 
 import styles from "../../styles/pages/Home/Home.module.scss";
-import Loading from "../../global/components/Loading/Loading";
+import { getIsMobile } from "../../utils/helpers/dimesions";
+import Loading from "../../components/Loading/Loading";
 import configs from "../../configs/home";
 
 import GameTiles from "./components/GameTiles/GameTiles";
@@ -18,7 +19,9 @@ const Home = () => {
   const mouseMoveHandler = (event: MouseEvent) => handleMouseMove(event, mouseCanvasCont.current as HTMLElement, mouseCanvasSize);
 
   useEffect(() => {
-    if (mouseCanvasCont.current?.innerHTML || !mouseCanvasCont.current) return;
+    const isMobile = getIsMobile()
+
+    if (mouseCanvasCont.current?.innerHTML || !mouseCanvasCont.current || isMobile) return;
     const mouseCanvas = document.createElement("canvas");
     mouseCanvas.width = mouseCanvasSize;
     mouseCanvas.height = mouseCanvasSize;

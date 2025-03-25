@@ -3,9 +3,9 @@ import { AiOutlineClose } from "react-icons/ai";
 import Button from "antd/lib/button";
 import type { MouseEventHandler } from "react";
 
-import styles from "../../../styles/globals/components/InfoWindow.module.scss";
+import styles from "../../styles/globals/components/InfoWindow.module.scss";
 import { infoWindowVariants } from "./utils/variants";
-import type { InfoDetailsProps } from "../../../types/shared";
+import type { InfoDetailsProps } from "../../types/shared";
 
 const InfoWindow = ({ visible,
     imageWidth1,

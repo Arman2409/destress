@@ -3,8 +3,8 @@ import Phaser from "phaser";
 import { angle as getAngle } from "pointscape";
 
 import configs from "../../../../configs/games/oceanFlow";
-import ScoreAlert from "../../../../global/components/ScoreAlert/ScoreAlert";
-import Loading from "../../../../global/components/Loading/Loading";
+import ScoreAlert from "../../../../components/ScoreAlert/ScoreAlert";
+import Loading from "../../../../components/Loading/Loading";
 import { getConfig } from "./utils/config";
 import { addPlants, checkForCollision, createRandomFishSchool, updateJellyfishDetails } from "./utils/functions";
 import { eventKeys } from "./utils/data";

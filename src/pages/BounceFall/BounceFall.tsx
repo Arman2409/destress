@@ -2,12 +2,12 @@ import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import styles from "../../styles/pages/BounceFall/BounceFall.module.scss";
-import CornerButton from "../../global/components/CornerButton/CornerButton";
+import CornerButton from "../../components/CornerButton/CornerButton";
 import configs from "../../configs/games/bounceFall";
-import updateAndGetVisitedStatus from "../../global/utils/updateAndGetVisitedStatus";
-import InfoWindow from "../../global/components/InfoWindow/InfoWindow";
-import { getIsMobile } from "../../global/utils/dimesions";
-import { getHasMobile } from "../../global/utils/getHasMobile";
+import updateAndGetVisitedStatus from "../../utils/helpers/updateAndGetVisitedStatus";
+import InfoWindow from "../../components/InfoWindow/InfoWindow";
+import { getIsMobile } from "../../utils/helpers/dimesions";
+import { getHasMobile } from "../../utils/helpers/getHasMobile";
 import Game from "./components/BounceFallGame/BounceFallGame";
 
 const { info, infoImage, infoImage2, mouseExtraX, mouseExtraY, ballRadius } = { ...configs };
@@ -20,7 +20,13 @@ const BounceFall = () => {
     
     useEffect(() => {
         const isMobile = getIsMobile();
+
+        console.log("Test getIsMobile, result:", getIsMobile());
+        
         const hasMobile = getHasMobile("Bounce Fall");
+
+        console.log("Test getHasMobile, result:", getHasMobile("bounceFall"));
+
 
         if(isMobile && !hasMobile) {
             navigate("/");
@@ -31,7 +37,7 @@ const BounceFall = () => {
         if (!visited) {
             setShowInfo(true);
         }
-    }, [setShowInfo])
+    }, [setShowInfo, navigate])
 
     return (
         <div

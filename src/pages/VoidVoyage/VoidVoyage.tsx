@@ -4,9 +4,9 @@ import { useNavigate } from "react-router-dom";
 
 import styles from "../../styles/pages/VoidVoyage/VoidVoyage.module.scss";
 import VoidVoyageGame from "./components/VoidVoyageGame/VoidVoyageGame";
-import updateAndGetVisitedStatus from "../../global/utils/updateAndGetVisitedStatus";
-import CornerButton from "../../global/components/CornerButton/CornerButton";
-import InfoWindow from "../../global/components/InfoWindow/InfoWindow";
+import updateAndGetVisitedStatus from "../../utils/helpers/updateAndGetVisitedStatus";
+import CornerButton from "../../components/CornerButton/CornerButton";
+import InfoWindow from "../../components/InfoWindow/InfoWindow";
 import configs from "../../configs/games/synapseHash";
 
 const { info, infoImage } = { ...configs };
