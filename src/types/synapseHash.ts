@@ -1,18 +1,19 @@
 
-import { Tweens } from "phaser"
-import type { Point } from "./shared"
+import { Tweens } from "phaser";
+
+import type { Point } from "./shared";
 
 export type Connection = Array<[string, string]>
 
-// props
+// Props
 
-export type CompletedAlertProps = {
+export interface CompletedAlertProps {
     setStatus: Function
     status: boolean
     startNew: Function
 }
 
-// interfaces 
+// Interfaces 
 
 export interface Neuron {
     id: string

@@ -1,5 +1,6 @@
-import type { ReactNode } from "react"
-import React from "react"
+import type { ReactNode } from "react";
+
+// Props 
 
 export interface InfoDetailsProps {
     confirmText: string

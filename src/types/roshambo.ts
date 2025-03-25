@@ -2,8 +2,9 @@ export type Jest = "scissors"|"rock"|"paper"
 export type WindowSize = "small" | "medium" | "large"
 export type GameStatus = "draw"|"lose"|"win"
 
-// context 
-export type RoshamboContextDetails = {
+// Context 
+
+export interface RoshamboContextDetails {
     chosenJest: Jest | null
     opponentJest: Jest | null
     opponentScore: number
@@ -13,8 +14,9 @@ export type RoshamboContextDetails = {
     dispatchOpponentJest: Function
 }
 
-// props 
-export type JestProps = {
+// Props
+
+export interface JestProps {
     keyClicked?: boolean
     borderRight?: boolean
     borderLeft?: boolean
@@ -24,7 +26,7 @@ export type JestProps = {
     onClick: Function
 }
 
-export type ShakingHandProps = {
+export interface ShakingHandProps {
     jest: Jest|null
     showingMode: boolean
     initialJest: Jest|null
@@ -33,11 +35,11 @@ export type ShakingHandProps = {
     duration: number
 }
 
-export type AnimatingScoresProps = {
+export interface AnimatingScoresProps {
     score: number
 }
 
-// interfaces 
+// Interfaces 
 
 export interface JestDetails {
     keyClicked?: boolean
