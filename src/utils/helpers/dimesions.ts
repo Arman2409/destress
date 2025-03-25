@@ -3,8 +3,6 @@ import configs from "../../configs/global";
 const { mobileBreakpoint } = { ...configs }
 
 export const getIsMobile = ():boolean => {
-    console.log(`Test getIsMobile, window width: ${window.innerWidth}, result: ${window.innerWidth <= mobileBreakpoint}`);
-    
    return window.innerWidth <= mobileBreakpoint
 };
 

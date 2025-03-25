@@ -74,7 +74,7 @@ const Game = () => {
     }, [showSkipStatus, size, setInitializeGame, setLoading, setConnectionsCount, setShowSkipStatus])
 
     useEffect(() => {
-        // creating new game whenever finished 
+        // Creating new game whenever finished 
         if (initializeGame && (scene.current as NetWork)?.physics) {
             (scene.current as NetWork)?.neurons?.forEach(({ sprite }: Neuron) => sprite.destroy());
             (scene.current as NetWork).connectionSprites.forEach((sprite: Phaser.GameObjects.Sprite) => sprite.destroy());
@@ -86,6 +86,7 @@ const Game = () => {
             setLoading(false);
             setInitializeGame(false);
         }
+          // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [initializeGame, setInitializeGame, setLoading, setConnectionsCount])
 
     return (

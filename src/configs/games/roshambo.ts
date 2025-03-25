@@ -1,6 +1,6 @@
 const configs = {
         animationDuration: 1.5,
-        summaryWaitTime: 1.5,
+        summaryWaitTime: 1,
         windowMediumSize: 700,
         windowSmallSize: 480,
         infoImage: "/roshambo/info.jpg",
