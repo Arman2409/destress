@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 
 import styles from "../../../../styles/pages/Roshambo/components/Summary/Summary.module.scss";
 import configs from "../../../../configs/games/roshambo";
@@ -13,8 +13,13 @@ const { summaryWaitTime } = { ...configs };
 const { texts, colors } = { ...statusesData };
 
 const Summary = () => {
-  const { chosenJest, opponentJest, dispatchJest, dispatchOpponentJest } = useContext(RoshamboContext);
+  const {
+    chosenJest,
+    opponentJest,
+    dispatchJest,
+    dispatchOpponentJest } = useContext(RoshamboContext);
   const [gameStatus, setGameStatus] = useState<GameStatus>("draw");
+  const timeout = useRef<NodeJS.Timeout | null>(null);
 
   const debouncedOpponentJest = useDebounce(opponentJest, summaryWaitTime * 1000)
 
@@ -23,16 +28,19 @@ const Summary = () => {
       const gameStatus = defineGameStatus(chosenJest || "rock", debouncedOpponentJest as Jest || "rock");
       setGameStatus(gameStatus || "draw");
 
-      setTimeout(() => {
+      timeout.current = setTimeout(() => {
         dispatchOpponentJest(null);
         dispatchJest(null);
       }, 1000)
     }
 
+    return () => {
+      clearTimeout(timeout.current as NodeJS.Timeout);
+    }
   }, [chosenJest, debouncedOpponentJest, dispatchOpponentJest, dispatchJest, gameStatus, setGameStatus]);
 
   const Icon = gameStatusIcons.get(gameStatus);
-  
+
   return (
     <div
       className="absolute_background centered"
