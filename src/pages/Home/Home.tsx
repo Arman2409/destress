@@ -28,6 +28,7 @@ const Home = () => {
 
     const context = mouseCanvas.getContext("2d");
     document.addEventListener('mousemove', (event: MouseEvent) => mouseMoveHandler(event));
+
     const particles: Particle[] = [];
 
     for (let i = 0; i < particlesCount; i++) {

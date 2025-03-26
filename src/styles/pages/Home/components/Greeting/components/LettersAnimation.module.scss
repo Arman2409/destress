@@ -4,8 +4,8 @@
 
 .letters_title {
     font-weight: 900;
-    color: $color1;
-    font-size: 18px;
+    color: $color4;
+    font-weight: bold;
     display: flex;
     cursor: default;
     position: relative;
@@ -13,8 +13,17 @@
     &_letter {
         position: absolute;
         transition-duration: 2s;
+        font-size: 27px;
         cursor: none;
 
+         @media screen and (max-width: 1300px) {
+            font-size: 20px;
+        }
+
+        @media  screen and (max-width: 1000px) {
+            font-size: 17px;
+        }
+        
         @media screen and (max-width: 540px) {
             font-size: 12px;
         }

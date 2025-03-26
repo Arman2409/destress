@@ -19,11 +19,38 @@ const imageBackgrounds = getBackgroundsArr(backgrounds, backgroundsPath);
 const Animation = () => {
   const [imageLoaded, setImageLoaded] = useState<boolean>();
   const [windowSize, setWindowSize] = useState<WindowSize>(window.innerWidth > 680 ? "large" : window.innerWidth > 480 ? "medium" : "small");
+  const [pointsCount, setPointsCount] = useState<number>(0);
+
   const { chosenJest, dispatchOpponentJest, opponentJest } = useContext(RoshamboContext);
 
   const opponentJestMemo = useMemo<Jest>(() => opponentJest || getRandomJest(), [opponentJest]);
-  
+
   const backgroundMemo = useMemo<string>(() => getRandomBackground(imageBackgrounds), []);
+
+
+  useEffect(() => {
+    let updateInterval: NodeJS.Timer | null = null;
+
+    if (!imageLoaded) {
+      setPointsCount(1);
+      updateInterval = setInterval(() => {
+        setPointsCount(curr => {
+          if (curr < 4) {
+            return curr + 1;
+          } else {
+            return 1;
+          }
+        })
+      }, 500)
+    } else {
+      if (updateInterval) clearInterval(updateInterval);
+      setPointsCount(0)
+    }
+
+    return () => {
+      if (updateInterval) clearInterval(updateInterval)
+    };
+  }, [setPointsCount, imageLoaded])
 
   useEffect(() => {
     window.addEventListener("resize", () => {
@@ -38,23 +65,26 @@ const Animation = () => {
   }, [setWindowSize])
 
   useEffect(() => {
-    if (!opponentJest) {
+    if (!opponentJest && imageLoaded) {
       setTimeout(() => {
         dispatchOpponentJest(opponentJestMemo);
       }, animationDuration * 1000 + 500)
     }
-  }, [opponentJest, opponentJestMemo, dispatchOpponentJest])
+  }, [opponentJest, imageLoaded, opponentJestMemo, dispatchOpponentJest])
 
   return (
     <div
       className={styles.animation_main}
-     >
-      <img 
+    >
+      <img
         alt=""
         className="absolute_background"
         src={backgroundMemo}
-        onLoad={() => setImageLoaded(true)} />
-      {imageLoaded && <div className={styles.animations_cont}>
+        onLoad={() => {
+            setImageLoaded(true);
+          }} 
+          />
+      {imageLoaded ? <div className={styles.animations_cont}>
         <div className={styles.animation_cont}>
           <ShakingHand
             side="left"
@@ -75,7 +105,9 @@ const Animation = () => {
             showingMode={Boolean(opponentJest)}
           />
         </div>
-      </div>}
+      </div> : <p className={styles.loading_text}>
+         {".".repeat(pointsCount)}
+      </p>}
     </div>
   )
 }

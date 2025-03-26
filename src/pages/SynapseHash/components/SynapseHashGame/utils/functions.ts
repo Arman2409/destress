@@ -35,19 +35,23 @@ const clickNeuron = (
     const { id: prevId } = previousClicked as Neuron;
     (previousClicked as Neuron)?.tween?.destroy();
     let hasConnection = false;
+
     scene.neuronConnections.forEach((elem: [string, string]) => {
       if (elem.includes(id) && elem.includes(prevId)) {
         hasConnection = true;
       }
     })
+
     scene.clickedNeuron = {
-      // adding rotating animation to the neuron 
+      // Add rotating animation to the neuron 
       tween: scene.tweens.add(getNeuronTweenConfig(sprite)),
       ...neuron
     }
+
     if (hasConnection && scene.neuronConnections.length) {
       return;
     }
+
     scene.neuronConnections.push([prevId, id]);
     callback(scene.neuronConnections.length);
     const { x: startX = 0, y: startY = 0 } = { ...(previousClicked as Neuron).sprite };
@@ -56,7 +60,7 @@ const clickNeuron = (
     const dist = distance({ x: startX, y: startY }, { x: endX, y: endY })
     const { x: middleX, y: middleY } = middle({ x: startX, y: startY }, { x: endX, y: endY });
 
-    // creating the connection sprite from one neuron to another 
+    // Create the connection sprite from one neuron to another 
     const newConnection = scene.physics.add.sprite(startX + middleX / 3, startY + middleY / 3, "connectionFrame")
       .setRotation(-Math.PI / 2 + angle)
       .setScale(dist * 0.0010, 1)
@@ -69,8 +73,10 @@ const clickNeuron = (
       duration: 2,
       repeat: -1,
     })
-    newConnection.anims.play("neuronConnectionAnimation")
-    // timeout for changing the connections size until it reached to the next neuron 
+
+    newConnection.anims.play("neuronConnectionAnimation");
+
+    // Timeout for changing the connections size until it reaches to the next neuron 
     setTimeout(() => {
       newConnection.x = startX + middleX / 2;
       newConnection.y = startY + middleY / 2;
@@ -97,9 +103,13 @@ export const addRandomNeurons = (scene: NetworkScene, size: "medium" | "large" |
     const { width, height } = scene.sys?.cameras?.main || {};
     for (let i = 0; i < neuronsCount; i++) {
       const others = scene.neurons.map(({ placement }) => ({ ...placement }));
-      // defining the distance between the neurons regarding the window's width 
-      const distance = size === "veryLarge" ? neuronDistanceBreakpoints[2] : size === "large" ? neuronDistanceBreakpoints[1] : neuronDistanceBreakpoints[0];
-      // generating random points for neurons 
+
+      // Define the distance between the neurons regarding the window's width 
+      const distance = size === "veryLarge" ? neuronDistanceBreakpoints[2] : 
+      size === "large" ? neuronDistanceBreakpoints[1]
+       : neuronDistanceBreakpoints[0];
+
+      // Generate random points for neurons 
       let { x, y } = pointWithoutCollision(distance, width - distance, distance, height - distance, distance, others);
       x = Math.round(x);
       y = Math.round(y);
@@ -118,7 +128,8 @@ export const addRandomNeurons = (scene: NetworkScene, size: "medium" | "large" |
         sprite: newNeuronSprite,
       }
       scene.neurons.push(newNeuron);
-      // set pointer events for the neuron 
+
+      // Set pointer events for the neuron 
       newNeuronSprite.on("pointerover", () => scene.input.setDefaultCursor("pointer"));
       newNeuronSprite.on("pointerout", () => scene.input.setDefaultCursor("default"));
       newNeuronSprite.on("pointerdown", () => clickNeuron(scene, newNeuron, clickCallback))
