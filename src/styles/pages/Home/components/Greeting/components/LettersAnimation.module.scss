@@ -1,8 +1,8 @@
 @import "../../../../../colors.scss";
 @import "../../../../../breakpoints.scss";
+@import "../../../../../customs.scss";
 
-
-.letters_title {
+.subtitle {
     font-weight: 900;
     color: $color4;
     font-weight: bold;
@@ -10,20 +10,27 @@
     cursor: default;
     position: relative;
 
-    &_letter {
+    &_letter_cont {
+        @extend .centered;
+
         position: absolute;
         transition-duration: 2s;
+        cursor: none;
+    }
+
+    &_letter {
+
         font-size: 27px;
         cursor: none;
 
-         @media screen and (max-width: 1300px) {
+        @media screen and (max-width: 1300px) {
             font-size: 20px;
         }
 
-        @media  screen and (max-width: 1000px) {
+        @media screen and (max-width: 1000px) {
             font-size: 17px;
         }
-        
+
         @media screen and (max-width: 540px) {
             font-size: 12px;
         }

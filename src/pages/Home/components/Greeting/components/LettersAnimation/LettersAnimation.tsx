@@ -24,20 +24,30 @@ const LettersAnimation = () => {
         const letters = subTitle.split("");
 
         letters.forEach((letter: string, order: number) => {
+
+            // Create container for each letter 
+            const letterDiv = document.createElement("div");
+            letterDiv.setAttribute("class", styles.subtitle_letter_cont);
+            letterDiv.style.width = letterDetails.spacing + "px";
+            letterDiv.style.top = Math.round(windowWidth * Math.random()) + "px";
+            letterDiv.style.left = Math.round(windowWidth * Math.random()) + "px";
+
+            // Create the letter
             const letterP = document.createElement("p");
             letterP.innerHTML = letter;
-            letterP.setAttribute("class", styles.letters_title_letter)
-            letterP.style.top = Math.round(windowWidth * Math.random()) + "px"
-            letterP.style.left = Math.round(windowWidth * Math.random()) + "px"
-            lettersMain.current?.appendChild(letterP);
-            animate(letterP,
+            letterP.setAttribute("class", styles.subtitle_letter);
+
+            letterDiv.appendChild(letterP);
+
+            lettersMain.current?.appendChild(letterDiv);
+            animate(letterDiv,
                 {
                     top: 0 + "px",
                     left: 0 + Number(order) * letterDetails.spacing + "px"
                 },
                 { duration: lettersAnimationDuration })
         });
-        
+
         window.addEventListener("resize", () => {
             const details = getSpacingAndWidth(window.innerWidth);
             const { spacing: letterSpacing = 0, width: titleWidth = 0 } = { ...details };
@@ -47,7 +57,7 @@ const LettersAnimation = () => {
                 // eslint-disable-next-line 
                 if (spacing !== letterSpacing || width !== width) {
                     lettersInitialized.current = false;
-                    if( lettersMain.current) {
+                    if (lettersMain.current) {
                         lettersMain.current.innerHTML = "";
                     }
                     return {
@@ -63,7 +73,7 @@ const LettersAnimation = () => {
     return (
         <div
             ref={lettersMain}
-            className={styles.letters_title}
+            className={styles.subtitle}
             style={{ width: letterDetails.width }} />
     )
 }
