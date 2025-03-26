@@ -1,7 +1,7 @@
 export const lettersSpacingsAndWidths = {
-    1200:{
+    1300:{
         width: 300,
-        spacing: 16
+        spacing: 20
     },
     1000:{
         width: 400,
@@ -15,12 +15,16 @@ export const lettersSpacingsAndWidths = {
         width: 400,
         spacing: 14,
     },
-    400:  {
+    410:  {
         width: 300,
-        spacing: 12,
+        spacing: 11.5,
+    },
+    370:  {
+        width: 300,
+        spacing: 11,
     },
     0: {
         width: 300,
-        spacing: 11,
+        spacing: 10.5,
     },
 }

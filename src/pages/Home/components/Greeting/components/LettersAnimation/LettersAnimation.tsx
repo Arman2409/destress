@@ -2,9 +2,9 @@ import { useEffect, useRef, useState } from "react";
 import { animate } from "framer-motion";
 
 import styles from "../../../../../../styles/pages/Home/components/Greeting/components/LettersAnimation.module.scss";
-import type { SubtitleDetails } from "../../../../../../types/home";
 import configs from "../../../../../../configs/home";
 import { getSpacingAndWidth } from "./utils/functions";
+import type { SubtitleDetails } from "../../../../../../types/home";
 
 const { subTitle, lettersAnimationDuration } = { ...configs };
 
@@ -18,9 +18,11 @@ const LettersAnimation = () => {
 
     useEffect(() => {
         if (lettersInitialized.current) return;
+
         lettersInitialized.current = true;
         const windowWidth = window.innerWidth;
         const letters = subTitle.split("");
+
         letters.forEach((letter: string, order: number) => {
             const letterP = document.createElement("p");
             letterP.innerHTML = letter;
@@ -34,7 +36,8 @@ const LettersAnimation = () => {
                     left: 0 + Number(order) * letterDetails.spacing + "px"
                 },
                 { duration: lettersAnimationDuration })
-        })
+        });
+        
         window.addEventListener("resize", () => {
             const details = getSpacingAndWidth(window.innerWidth);
             const { spacing: letterSpacing = 0, width: titleWidth = 0 } = { ...details };

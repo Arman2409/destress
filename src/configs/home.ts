@@ -6,7 +6,7 @@ const configs = {
     particleSize: 7.5,
     particlesCount: 10,
     particleColor: "#F7EC09",
-    subTitle: "Antistress games' compilation",
+    subTitle: "Antistress Games Compilation",
     lettersAnimationDuration: 1.5,
     topCopyright: "Copyright © 2023 Free Software Foundation, Inc. <https://fsf.org/>",
     bottomCopyright: "Ghazaryan Arman",
