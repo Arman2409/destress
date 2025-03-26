@@ -1,4 +1,5 @@
 @import "../../../../customs.scss";
+@import "../../../../colors.scss";
 
 .animation_main {
     width: 100%;
@@ -18,4 +19,12 @@
 .animation_cont {
     width: 50%;
     position: relative;
+}
+
+.loading_text {
+    position: absolute;
+    font-size: 70px;
+    color: $color1;
+    top: calc(50% - 35px);
+    left: calc(50% - 50px);
 }
