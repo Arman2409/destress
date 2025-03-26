@@ -7,7 +7,7 @@ const configs = {
     particlesCount: 10,
     particleColor: "#F7EC09",
     subTitle: "Go-To Antistress Games",
-    lettersAnimationDuration: 1.5,
+    lettersAnimationDuration: 2.25,
     topCopyright: "Copyright © 2023 Free Software Foundation, Inc. <https://fsf.org/>",
     bottomCopyright: "Ghazaryan Arman",
 }
