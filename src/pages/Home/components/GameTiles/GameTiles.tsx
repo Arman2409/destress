@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
+import { chunk } from "pointscape";
 
 import styles from "../../../../styles/pages/Home/components/GameTiles/GameTiles.module.scss";
 import configs from "../../../../configs/home";
-import getChunks from "../../../../utils/helpers/getChunks";
 import { gamesData } from "../../../../data/pages";
 import GameTile from "./components/GameTile/GameTile";
 import type { GameTilesProps, Game } from "../../../../types/home";
@@ -21,7 +21,7 @@ const GameTiles = ({ choseGame }: GameTilesProps) => {
         }
     )
 
-    const gameGroups = getChunks(games, 2) as Game[][];
+    const gameGroups = chunk(games, 2) as Game[][];
 
     useEffect(() => {
         setTimeout(() => {

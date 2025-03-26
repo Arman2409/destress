@@ -31,7 +31,7 @@ const VoidVoyageGame = () => {
     const geometry = new PlaneGeometry(2, 2);
     const textures:Texture[] = [];
     for(let i = 0; i < 10; i++) {
-      textures.push(new TextureLoader().load(`/voidVoyage/000${i}.png`))
+      textures.push(new TextureLoader().load(`/voidVoyage/frame-${i}.png`))
     }
     let currIndex = 0;
     const material = new MeshBasicMaterial({ map: textures[0] });
