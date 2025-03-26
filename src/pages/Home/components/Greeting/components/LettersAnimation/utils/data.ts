@@ -1,30 +1,22 @@
 export const lettersSpacingsAndWidths = {
     1300:{
-        width: 300,
+        width: 250,
         spacing: 20
     },
     1000:{
-        width: 400,
+        width: 250,
         spacing: 16
     },
-    925: {
-        width: 350,
-        spacing: 15,
-    },
     540:  {
-        width: 400,
+        width: 300,
         spacing: 14,
     },
     410:  {
-        width: 300,
-        spacing: 11.5,
-    },
-    370:  {
-        width: 300,
-        spacing: 11,
+        width: 270,
+        spacing: 13,
     },
     0: {
-        width: 300,
-        spacing: 10.5,
+        width: 250,
+        spacing: 12,
     },
 }
